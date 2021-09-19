@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\DaftarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,14 @@ use App\Http\Controllers\CheckController;
 Route::get('/semak', [CheckController::class, 'index'])->name('semak');
 Route::post('/semak', [CheckController::class, 'store']);
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+// Route::get('/register', [RegisterController::class, 'index'])->name('register');
+// Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/daftar/baru', [RegisterController::class, 'index'])->name('register');
+Route::post('/daftar/baru', [RegisterController::class, 'store']);
+
+Route::get('/daftar/giliran', [DaftarController::class, 'index'])->name('daftar');
+Route::post('/daftar/giliran', [DaftarController::class, 'store']);
 
 Route::get('/login', function () {
     return view('welcome');
@@ -36,6 +43,6 @@ Route::get('/', function () {
 //     return view('auth.register');
 // });
 
-Route::view('/daftar/baru', 'layouts.daftar.daftar-baru');
-Route::view('/daftar/giliran', 'layouts.daftar.daftar');
+// Route::view('/daftar/baru', 'layouts.daftar.daftar-baru');
+// Route::view('/daftar/giliran', 'layouts.daftar.daftar');
 // Route::view('/semak', 'layouts.semak.semak');

@@ -18,9 +18,13 @@
         <div class="bg-red-500 py-4 px-2 w-10/12 rounded-lg mt-4 text-white font-semibold text-center justify-center mx-auto">
             {{ session()->get('status') }}
         </div>
+        @elseif (session()->has('registered'))
+        <div class="bg-yellow-500 py-4 px-2 w-10/12 rounded-lg mt-4 text-white font-semibold text-center justify-center mx-auto">
+            {{ session()->get('registered') }}
+        </div>
         @endif
 
-        <form method="POST" action="{{ route('semak') }}" class="grid pt-6">
+        <form method="POST" action="{{ route('daftar') }}" class="grid pt-6">
             @csrf
             <label for="phone" class="label text-lg text-gray-700">Sila Isikan No. Telefon
                 <br>

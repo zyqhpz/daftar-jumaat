@@ -13,7 +13,7 @@
             {{ session()->get('status') }}
         </div>
         @endif
-        <form method="POST" action="{{ route('semak') }}" class="grid pt-6">
+        <form method="POST" action="{{ route('daftar') }}" class="grid pt-6">
             @csrf
             <label for="phone" class="label text-lg text-gray-700">Masukkan No. Telefon
                 <br>

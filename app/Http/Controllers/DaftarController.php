@@ -6,11 +6,11 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CheckController extends Controller
+class DaftarController extends Controller
 {
     public function index()
     {
-        return view('layouts.semak.semak');
+        return view('layouts.daftar.daftar');
     }
     
     public function store(Request $request) {
@@ -21,11 +21,14 @@ class CheckController extends Controller
         if (!User::where('phone', $request->input('phone'))->count() > 0) {
             return back()->with('status', 'Nombor ini tiada dalam sistem. Sila buat pendaftaran baharu');
         }
+        else {
+            return back()->with('registered', 'Nombor ini telah didaftarkan. Sila lakukan semakan.');
+        }
 
         // if ($request->only('phone')) {
         //     return back()->with('status', 'Nombor ini tiada dalam sistem. Sila buat pendaftaran baru');
         // }
 
-        return redirect('/');
+        // return redirect('/');
     }
 }
