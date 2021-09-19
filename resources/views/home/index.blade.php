@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    Index
+    Ini homepage
 @endsection
