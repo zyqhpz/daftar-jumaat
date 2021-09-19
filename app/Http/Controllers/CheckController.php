@@ -19,7 +19,7 @@ class CheckController extends Controller
         ]);
         
         if (!User::where('phone', $request->input('phone'))->count() > 0) {
-            return back()->with('status', 'Nombor ini tiada dalam sistem. Sila buat pendaftaran baru');
+            return back()->with('status', 'Nombor ini tiada dalam sistem. Sila membuat pendaftaran baharu');
         }
 
         // if ($request->only('phone')) {

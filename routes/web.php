@@ -26,7 +26,7 @@ Route::get('/login', function () {
 
 
 Route::get('/', function () {
-    return view('layouts.semak.semak');
+    return view('layouts.home');
 });
 
 // Route::view('/semak', 'semak');
@@ -36,5 +36,6 @@ Route::get('/', function () {
 //     return view('auth.register');
 // });
 
-Route::view('/daftar', 'layouts.daftar.daftar');
+Route::view('/daftar/baru', 'layouts.daftar.daftar-baru');
+Route::view('/daftar/giliran', 'layouts.daftar.daftar');
 // Route::view('/semak', 'layouts.semak.semak');
