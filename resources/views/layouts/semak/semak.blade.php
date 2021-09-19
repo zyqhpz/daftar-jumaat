@@ -13,7 +13,12 @@
             {{ session()->get('status') }}
         </div>
         @endif
-        <form method="POST" action="{{ route('daftar') }}" class="grid pt-6">
+        @if(session()->has('vaksin'))
+        <div class="bg-green-500 py-4 px-2 w-10/12 rounded-lg mt-2 text-white font-semibold text-center justify-center mx-auto">
+            {{ session()->get('vaksin') }}
+        </div>
+        @endif
+        <form method="POST" action="{{ route('semak') }}" class="grid pt-6">
             @csrf
             <label for="phone" class="label text-lg text-gray-700">Masukkan No. Telefon
                 <br>

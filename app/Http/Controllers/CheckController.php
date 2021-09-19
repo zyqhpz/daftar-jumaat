@@ -19,13 +19,27 @@ class CheckController extends Controller
         ]);
         
         if (!User::where('phone', $request->input('phone'))->count() > 0) {
-            return back()->with('status', 'Nombor ini tiada dalam sistem. Sila buat pendaftaran baharu');
+            return back()->with('status', 'Nombor ini tiada di dalam rekod. Anda perlu membuat pendaftaran baharu.');
+        }
+        else {
+            // $stats = DB::select('select status_vaksin from users where phone = ?', [$request->input('phone')]);
+
+            $stats = User::where('phone', $request->input('phone'))->first()->status_vaksin;
+
+            // dd($stats);
+            
+            if($stats == 2) {
+                return back()->with('vaksin', 'Fully Vaccinated');
+            }
+            else {
+                return back()->with('vaksin', 'Partially Vaccinated');
+            }
         }
 
         // if ($request->only('phone')) {
         //     return back()->with('status', 'Nombor ini tiada dalam sistem. Sila buat pendaftaran baru');
         // }
 
-        return redirect('/');
+        // return redirect('/');
     }
 }
