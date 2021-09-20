@@ -22,7 +22,7 @@ class DaftarController extends Controller
             return back()->with('status', 'Nombor ini tiada dalam sistem. Sila buat pendaftaran baharu');
         }
         else {
-            return back()->with('registered', 'Nombor ini telah didaftarkan. Sila lakukan semakan.');
+            return back()->with('registered', 'Nombor ini telah didaftarkan. Semakan boleh dilakukan bermula pada hari Rabu jam 9 pagi.');
         }
 
         // if ($request->only('phone')) {

@@ -36,6 +36,10 @@ Route::get('/', function () {
     return view('layouts.home');
 });
 
+Route::get('/keputusan', function() {
+    return view('layouts.semak.keputusan');
+});
+
 // Route::view('/semak', 'semak');
 
 

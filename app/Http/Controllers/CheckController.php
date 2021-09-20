@@ -29,7 +29,7 @@ class CheckController extends Controller
             // dd($stats);
             
             if($stats == 2) {
-                return back()->with('vaksin', 'Fully Vaccinated');
+                return redirect('/keputusan')->with('vaksin', 'Fully Vaccinated');
             }
             else {
                 return back()->with('vaksin', 'Partially Vaccinated');
