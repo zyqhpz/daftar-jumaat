@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckController extends Controller
 {
@@ -25,11 +26,15 @@ class CheckController extends Controller
             // $stats = DB::select('select status_vaksin from users where phone = ?', [$request->input('phone')]);
 
             $stats = User::where('phone', $request->input('phone'))->first()->status_vaksin;
+            $nama = User::where('phone', $request->input('phone'))->first()->name;
+
+            // dd($nama);
 
             // dd($stats);
             
             if($stats == 2) {
-                return redirect('/keputusan')->with('vaksin', 'Fully Vaccinated');
+                // $nama = DB::select('select name from users where phone = ?', [$request->input('phone')]);
+                return redirect('/keputusan')->with('vaksin', 'Fully Vaccinated')->with('nama', $nama);
             }
             else {
                 return back()->with('vaksin', 'Partially Vaccinated');

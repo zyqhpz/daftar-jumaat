@@ -15,6 +15,7 @@
         @endif
         @if(session()->has('vaksin'))
         <div class="bg-green-500 py-4 px-2 w-10/12 rounded-lg mt-2 text-white font-semibold text-center justify-center mx-auto">
+            {{ session()->get('nama') }} telah
             {{ session()->get('vaksin') }}
         </div>
         @endif

@@ -13,6 +13,7 @@
                 <h3>
                     Berjaya!
                 </h3>
+                {{ session()->get('nama') }}
                 <h4>
                     Sila hadirkan diri pada hari {{ date('d/m/Y') }}
                 </h4>
