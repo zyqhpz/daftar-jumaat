@@ -2,6 +2,16 @@
 
 @section('content')
     <div class="px-4">
+
+        @if(session()->has('berjaya'))
+        <div class="font-extrabold mx-auto justify-center text-lg text-center">
+            <div class="bg-green-500 py-4 px-2 w-10/12 rounded-lg mt-2 text-white font-semibold text-center justify-center mx-auto">
+                <h1>
+                    {{ session()->get('berjaya') }}
+                </h1>
+            </div>
+        </div>
+        @else
         <h1 class="font-extrabold mx-auto justify-center text-lg text-center">
             MAKLUMAT DIRI
             <br>
@@ -54,6 +64,7 @@
                 </div>
             </button>
         </form>
+        @endif
     </div>
 @endsection
 

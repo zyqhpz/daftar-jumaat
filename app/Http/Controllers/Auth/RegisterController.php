@@ -27,6 +27,7 @@ class RegisterController extends Controller
             'vaksin' => $request->vaksin
         ]);
 
-        return redirect('/');
+        // return redirect('/');
+        return back()->with('berjaya', 'Pendaftaran Berjaya!');
     }
 }

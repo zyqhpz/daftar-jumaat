@@ -44,11 +44,30 @@
     </div>
 
     <script>
+
+        // get date ni fetch dari DB je ??
+
         var d = new Date();
         // d.setDate(d.getDate() + 1);
         // d.setFullYear(2021, 9, 24);
         document.getElementById("tarikh").innerHTML = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
         
-        document.getElementById("hari").innerHTML = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'][d.getDay()];
-        </script>
+        // document.getElementById("hari").innerHTML = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'][d.getDay()];
+        
+        document.getElementById("hari").innerHTML = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'][5];
+
+        function fridayInMonth( m, y ) {
+            var days = new Date( y,m,0 ).getDate();
+            var friday = [ 6 - (new Date( m +'/01/'+ y ).getDay()) ];
+            for ( var i = friday[0] + 7; i < days; i += 7 ) {
+                friday.push( i );
+            }
+            return friday[3];
+            // return friday -> display array
+        }
+
+        // document.getElementById("tarikh").innerHTML = fridayInMonth(9, 2021) -> display hari je
+
+        document.getElementById("tarikh").innerHTML = fridayInMonth(9, 2021) + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+    </script>
 @endsection
