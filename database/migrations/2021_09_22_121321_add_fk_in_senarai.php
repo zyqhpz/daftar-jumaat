@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSenaraiTable extends Migration
+class AddFkInSenarai extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSenaraiTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('senarai_nama', function (Blueprint $table) {
+            $table->integer('tarikh_id')->unsigned()->index()->nullable();
+            $table->foreign('tarikh_id')->references('tarikh_id')->on('tarikh');
         });
     }
 
@@ -26,6 +26,8 @@ class CreateSenaraiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('senarai_nama', function (Blueprint $table) {
+            //
+        });
     }
 }

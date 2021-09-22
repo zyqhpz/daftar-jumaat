@@ -22,6 +22,10 @@
         <div class="bg-yellow-500 py-4 px-2 w-10/12 rounded-lg mt-4 text-white font-semibold text-center justify-center mx-auto">
             {{ session()->get('registered') }}
         </div>
+        @elseif (session()->has('success'))
+        <div class="bg-green-500 py-4 px-2 w-10/12 rounded-lg mt-4 text-white font-semibold text-center justify-center mx-auto">
+            {{ session()->get('success') }}
+        </div>
         @endif
 
         <form method="POST" action="{{ route('daftar') }}" class="grid pt-6">
