@@ -20,6 +20,11 @@ class DashboardController extends Controller
         $senarai = Senarai::all();
         return view('layouts.dashboard.senarai', compact('senarai'));
     }
+
+    public function manage() {
+
+        return view('layouts.dashboard.manage_user');
+    }
     
     public function logout() {
         session()->flush();

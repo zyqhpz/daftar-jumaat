@@ -38,6 +38,8 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('manage');
+
 // Route::get('/', [DashboardController::class, 'getLogout'])->name('logout');
 
 Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
@@ -46,6 +48,10 @@ Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
 
 Route::get('/', function () {
     return view('layouts.home');
+});
+
+Route::get('/home', function() {
+    return view('welcome');
 });
 
 Route::get('/keputusan', function() {
