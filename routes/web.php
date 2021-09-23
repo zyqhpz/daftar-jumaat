@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DaftarController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +29,20 @@ Route::post('/daftar/baru', [RegisterController::class, 'store']);
 Route::get('/daftar/giliran', [DaftarController::class, 'index'])->name('daftar');
 Route::post('/daftar/giliran', [DaftarController::class, 'store']);
 
-Route::get('/login', function () {
-    return view('welcome');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
 
+// Route::get('/login', function () {
+//     return view('welcome');
+// });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Route::get('/', [DashboardController::class, 'getLogout'])->name('logout');
+
+Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
+
+// Route::get('logout', ['uses' => 'DashboardController@getLogout', 'as' => 'logout']);
 
 Route::get('/', function () {
     return view('layouts.home');

@@ -34,13 +34,6 @@ class CheckController extends Controller
             if (Senarai::where('phone_id', $request->input('phone'))->count() > 0) {
                 
                 $keputusan = Senarai::where('phone_id', $request->input('phone'))->first()->status_pendaftaran;
-                // $keputusan = DB::table('senarai_nama')->select('status_pendaftaran')->where('phone_id', $request->input('phone'))->get();
-                // select status_pendaftaran from senarai_nama where phone_id = '$request->input('phone')'
-                // $keputusan = DB::table('senarai_nama')->select('status_pendaftaran')->where('phone_id', $request->input('phone'))->first();
-
-                // $keputusan = DB::select('select status_pendaftaran from senarai_nama where phone_id = ?', [$request->input('phone')]->first());
-
-                // dd($keputusan);
 
                 // dd($stats);
 

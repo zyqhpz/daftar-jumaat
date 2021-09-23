@@ -22,6 +22,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'vaksin',
+        'status_vaksin',
         'email',
         'password',
     ];

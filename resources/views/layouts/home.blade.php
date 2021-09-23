@@ -9,7 +9,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <title>Sistem Daftar Solat</title>
+    <title>Sistem Daftar Solat Jumaat</title>
     
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
