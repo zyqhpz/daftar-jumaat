@@ -40,6 +40,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('manage');
 
+Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'delete'])->name('manage.delete');
+// Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'edit'])->name('manage.edit');
+
 // Route::get('/', [DashboardController::class, 'getLogout'])->name('logout');
 
 Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');

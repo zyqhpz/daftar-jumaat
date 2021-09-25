@@ -22,8 +22,22 @@ class DashboardController extends Controller
     }
 
     public function manage() {
+        $ahli = User::all();
+        $ahli = User::orderBy('id')->get();
+        return view('layouts.dashboard.manage_user', compact('ahli'));
+    }
 
-        return view('layouts.dashboard.manage_user');
+    // create a delete method for admin
+    public function delete($phone) {
+        $ahli = User::where('phone', $phone)->first();
+        $ahli->delete();
+        return redirect('/dashboard/manage');
+    }
+
+    // edit user data from a modal
+    public function edit($phone) {
+        $user = User::where('phone', $phone)->first();
+        return view('layouts.dashboard.manage_user', compact('user'));
     }
     
     public function logout() {
