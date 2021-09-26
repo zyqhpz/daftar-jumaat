@@ -20,10 +20,10 @@
 
 
 </head>
-<body>
+<body >
     
     {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-900 sm:items-center py-4 sm:pt-0"> --}}
-    <div class="relative flex items-top justify-start min-h-screen bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <div class="relative flex items-top justify-start min-h-screen bg-gray-900 sm:items-center py-4 sm:pt-0" id="here">
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             <a class=" text-white" href="{{ route('logout') }}">Logout</a>
             @auth
@@ -38,7 +38,7 @@
         </div>
         <div class="flex items-center p-4 gap-2">
             <div class="flex flex-1 flex-col w-full max-w-md mx-auto gap-2">
-                <a href="{{ url('/dashboard/manage')}}" class="no-underline">
+                <a href="" onclick="routeToManage()" class="no-underline">
                     <div class="flex justify-center bg-gray-200 w-48 h-20 border-black border-2 align-middle">
                         <h1 class="text-lg text-black no-underline text-center m-auto font-semibold">
                             <i class="fas fa-user-cog"></i>
@@ -46,7 +46,8 @@
                         </h1>
                     </div>
                 </a>
-                <a href="{{ url('/dashboard')}}" class="no-underline">
+                {{-- <a href="{{ url('/dashboard')}}" class="no-underline"> --}}
+                <a onclick="routeToHome()" class="no-underline">
                     <div class="flex justify-center bg-gray-200 w-48 h-20 border-black border-2 align-middle">
                         <h1 class="text-lg text-black no-underline text-center m-auto">
                             Senarai
@@ -76,6 +77,90 @@
 </body>
 </html>
 
+<script>
+    function routeToManage() {
+        event.preventDefault();
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: '/dashboard/manage',
+            method: 'get',
+            data: {
+                CSRF_TOKEN
+            },
+            success: function(data) {
+                // console.log(data);
+                $('#here').html(data);  
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+
+    // function routeToManage() {
+    //     event.preventDefault();
+    //     const xhttp = new XMLHttpRequest();
+    //     // const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    //     xhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             document.getElementById("here").innerHTML = this.responseText;
+    //         }
+    //     };
+    //     xhttp.open("GET", "/dashboard/manage", true);
+    //     xhttp.send();
+    // }
+
+    //     $.ajax({
+    //         url: '/dashboard/manage',
+    //         type: 'get',
+    //         data: {
+    //             CSRF_TOKEN
+    //         },
+    //         success: function(data) {
+    //             // console.log(data);
+    //             $('#here').html(data);  
+    //         }
+    //     });
+    // }
+    function routeToHome() {
+        event.preventDefault();
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: '/dashboard/',
+            type: 'get',
+            data: {
+                CSRF_TOKEN
+            },
+            success: function(data) {
+                // console.log(data);
+                $('#here').html(data);
+            }
+        });
+    }
+    // function updateData() {
+    //           event.preventDefault();
+    //           // const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+    //           var phone = $('#phone').val();
+              
+    //           $.ajax({
+    //               url: '/dashboard/edit',
+    //               type: 'post',
+    //               data: {
+    //                   phone: phone,
+    //                   name: $('#name').val(),
+    //                   address: $('#address').val(),
+    //                   vaksin: $('#vaksin').val(),
+    //                   _token: '{{ csrf_token() }}'
+    //               },
+    //               success: function(response) {
+    //                   console.log("123");
+    //                   // $('#here').html(data);  
+    //               }
+    //         });
+</script>
 
 
 <style>

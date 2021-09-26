@@ -21,7 +21,7 @@ class DashboardController extends Controller
         return view('layouts.dashboard.senarai', compact('senarai'));
     }
 
-    public function manage() {
+    public function manage(Request $request) {
         $ahli = User::all();
         $ahli = User::orderBy('id')->get();
         return view('layouts.dashboard.manage_user', compact('ahli'));
@@ -35,7 +35,8 @@ class DashboardController extends Controller
     }
 
     // edit user data from a modal
-    public function edit($phone) {
+    public function update($phone) {
+        dd($phone);
         $user = User::where('phone', $phone)->first();
         return view('layouts.dashboard.manage_user', compact('user'));
     }

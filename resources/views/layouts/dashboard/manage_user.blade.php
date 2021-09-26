@@ -91,6 +91,9 @@
               <label for="address" class="label text-lg text-gray-700 mt-4">Alamat</label>
               <input type="text" id="address" name="address" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
 
+              <label for="vaksin" class="label text-lg text-gray-700 mt-4">Status Vaksinasi</label>
+              <input type="text" id="vaksin" name="vaksin" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
+              
               <label for="vaksin" class="label text-lg text-gray-700 mt-4">Muat Naik Sijil Vaksinasi</label>
               <input class="mt-2 px-2 rounded-md h-12 border-2 border-black border-opacity-50 py-2 @error('vaksin') border-red-500 @enderror" type="file" name="vaksin">
               
@@ -109,37 +112,24 @@
 
               var id = $(this).data('id');
               console.log(id);
-              console.log($(this).data('name'));
-
-              //  // var n = $('#' + id).children(td[data-target]);
-              //   var no = currentRow.find("td:eq(0)").text(); // get current row 1st TD value 
-              //   var name = currentRow.find("td:eq(1)").text();
-              //   var phone = currentRow.find("td:eq(2)").text();
-              //   var address = currentRow.find("td:eq(3)").text();
-              //   // var stats = @php echo $row['status_vaksin']; @endphp;
-              //   var desc = currentRow.find("td:eq(4)").text();
-
               
-                var table = $('#example').DataTable();
-                var data = table.row($(this).parents('tr')).data();
-                // var id = data[0];
-                var name = data[1];
-                var phone = data[2];
-                var address = data[3];
-                var stats = data[4];
+                var table = $('table tbody');
+                table.find('tr').each(function(i) {
+                  var $row = $(this);
+                  var name = $row.find('td:eq(1)').text();
+                  var phone = $row.find('td:eq(2)').text();
+                  var address = $row.find('td:eq(3)').text();
+                  var stats = $row.find('td:eq(4)').text();
 
-                console.log(name);
-                console.log(phone);
-                console.log(address);
-                console.log(stats);
- 
-                $('#matID').val(id);
-                $('#name').val(name);
-                $('#address').val(address);
-                $('#phone').val(phone);
-                $('#file').val(file);
-                $('#category').val(cat);
-            });    </script>
+                  if (id == phone) {
+                    $('#phone').val(phone);
+                    $('#name').val(name);
+                    $('#address').val(address);
+                    $('#vaksin').val(stats);
+                  }
+                });
+            });    
+    </script>
 @endsection
 
 @section('styling')

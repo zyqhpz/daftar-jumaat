@@ -39,6 +39,10 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('manage');
+// Route::post('/dashboard/edit', [DashboardController::class, 'edit']);
+
+// Route::resource('/dashboard', DashboardController::class);
+
 
 Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'delete'])->name('manage.delete');
 // Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'edit'])->name('manage.edit');
