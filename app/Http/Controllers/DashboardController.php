@@ -36,9 +36,13 @@ class DashboardController extends Controller
 
     // edit user data from a modal
     public function update($phone) {
-        dd($phone);
+        // dd($phone);
         $user = User::where('phone', $phone)->first();
-        return view('layouts.dashboard.manage_user', compact('user'));
+        // $user->name = Input::get('name');
+        $user->phone = request('phone');
+        $user->save();
+        // return view('layouts.dashboard.manage_user', compact('user'));
+        return redirect('/dashboard/manage');
     }
     
     public function logout() {

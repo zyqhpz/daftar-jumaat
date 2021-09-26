@@ -45,7 +45,10 @@ Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('m
 
 
 Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'delete'])->name('manage.delete');
-// Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'edit'])->name('manage.edit');
+// Route::post('/dashboard/update/{phone}', [DashboardController::class, 'update'])->name('manage.update');
+
+Route::resource('/dashboard/update/{phone}', DashboardController::class);
+Route::post('/dashboard/update/{phone}', [DashboardController::class, 'update'])->name('manage.update');
 
 // Route::get('/', [DashboardController::class, 'getLogout'])->name('logout');
 

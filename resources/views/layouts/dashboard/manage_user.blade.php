@@ -79,7 +79,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form method="post" action="{{ route('register') }}" class="grid pt-6">
+            <form method="post" class="grid pt-6">
               @csrf
   
               <label for="phone" class="label text-lg text-gray-700">Nombor Telefon</label>
@@ -101,7 +101,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" onclick="updateData()">Save changes</button>
           </div>
         </div>
       </div>
@@ -128,7 +128,25 @@
                     $('#vaksin').val(stats);
                   }
                 });
-            });    
+            });
+            
+                function updateData() {
+        event.preventDefault();
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: '/dashboard/update/' + $('#phone').val(),
+            type: 'post',
+            data: {
+                phone: $('#phone').val(),
+                _token: '{{ csrf_token() }}',
+            },
+            success: function(data) {
+                console.log("success");
+                // $('#here').html(data);  
+            }
+        });
+    }
     </script>
 @endsection
 
