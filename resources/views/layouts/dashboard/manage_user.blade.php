@@ -6,10 +6,6 @@
 
         <p>ASdaldasldmadas</p>
 
-      @php
-          
-      @endphp
-
         <div class="border-1 rounded-sm p-1">
           <table class="table-fixed border-1 rounded-xl" id="example">
             <thead class="p-1">
@@ -79,8 +75,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form method="post" class="grid pt-6">
+            <form method="put"  class="grid pt-6" id="editForm">
               @csrf
+
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+
+
   
               <label for="phone" class="label text-lg text-gray-700">Nombor Telefon</label>
               <input type="tel" minlength="10" maxlength="11" value="{{ $row['phone'] }}" id="phone" name="phone" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('phone') border-red-500 @enderror">
@@ -101,7 +102,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="updateData()">Save changes</button>
+            <button type="submit" class="btn btn-primary" id="update" onclick="updateData()">Save changes</button>
           </div>
         </div>
       </div>
@@ -132,17 +133,38 @@
             
                 function updateData() {
         event.preventDefault();
-        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        // const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var $dt = {};
+
+            
+
+            $dt.phone = $('#phone').val();
+            var fon = $('#phone').val();
+            $dt.name = $('#name').val();
+            $dt.address = $('#address').val();
+            $dt.vaksin = $('#vaksin').val();
+            
 
         $.ajax({
-            url: '/dashboard/update/' + $('#phone').val(),
-            type: 'post',
+            url: '/dashboard/manage/update/' + fon,
+            type: 'put',
             data: {
-                phone: $('#phone').val(),
-                _token: '{{ csrf_token() }}',
+              phone: $dt.phone,
+              name: $dt.name,
+              address: $dt.address,
+              vaksin: $dt.vaksin,
+
             },
-            success: function(data) {
+            success: function() {
                 console.log("success");
+                console.log();
                 // $('#here').html(data);  
             }
         });

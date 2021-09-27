@@ -7,6 +7,11 @@ use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\DashboardController;
 
+//import user model
+use App\Models\User;
+
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,8 +52,14 @@ Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('m
 Route::get('/dashboard/manage/{phone}', [DashboardController::class, 'delete'])->name('manage.delete');
 // Route::post('/dashboard/update/{phone}', [DashboardController::class, 'update'])->name('manage.update');
 
-Route::resource('/dashboard/update/{phone}', DashboardController::class);
-Route::post('/dashboard/update/{phone}', [DashboardController::class, 'update'])->name('manage.update');
+// Route::resource('/dashboard/update/{phone}', DashboardController::class);
+// Route::post('/dashboard/update/{phone}', [DashboardController::class, 'update'])->name('manage.update');
+
+Route::put('/dashboard/manage/update/{phone}', [DashboardController::class, 'update'])->name('manage.update');
+// Route::put('/dashboard/manage/update/{phone}', function ($phone) {
+//     echo $phone;
+//     dd('end');
+// });
 
 // Route::get('/', [DashboardController::class, 'getLogout'])->name('logout');
 
@@ -66,6 +77,10 @@ Route::get('/home', function() {
 
 Route::get('/keputusan', function() {
     return view('layouts.semak.keputusan');
+});
+
+Route::post('/edit', function() {
+    return view('layouts.dashboard.edit');
 });
 
 // Route::view('/semak', 'semak');

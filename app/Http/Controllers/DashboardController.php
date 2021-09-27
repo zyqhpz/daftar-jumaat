@@ -35,9 +35,11 @@ class DashboardController extends Controller
     }
 
     // edit user data from a modal
-    public function update($phone) {
-        // dd($phone);
+    public function update(Request $request, $phone) {
+        dd("end");
         $user = User::where('phone', $phone)->first();
+        $user = User::find($request->phone);
+        $user->name = $request->name;
         // $user->name = Input::get('name');
         $user->phone = request('phone');
         $user->save();
