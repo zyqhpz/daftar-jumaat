@@ -50,8 +50,9 @@
                             <i class="fas fa-edit text-white"></i>
                         </button>
                   </a> --}}
-                  <a href="#" class="modal-trigger px-2 py-1 bg-blue-700" data-role="update" data-id="{{ $row['phone'] }}">
-                        <button id="myBtn" type="button" class=" mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <a href="/dashboard/manage/edit/{{ $row['phone'] }}" class="modal-trigger px-2 py-1 bg-blue-700" data-role="update" data-id="{{ $row['phone'] }}">
+                        {{-- <button id="myBtn" type="button" class=" mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"> --}}
+                        <button id="myBtn" type="button" class=" mx-auto" data-bs-target="#exampleModal">
                             <i class="fas fa-edit text-white"></i>
                         </button>
                   </a>
@@ -75,34 +76,37 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form method="put"  class="grid pt-6" id="editForm">
+            <form method="post" class="grid pt-6 w-96 font-black"  id="editForm">
+              @method('put')
               @csrf
-
-              {{ csrf_field() }}
-              {{ method_field('PUT') }}
-
-
-  
+          
+              <input type="hidden" name="id" value="01128589146">
               <label for="phone" class="label text-lg text-gray-700">Nombor Telefon</label>
-              <input type="tel" minlength="10" maxlength="11" value="{{ $row['phone'] }}" id="phone" name="phone" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('phone') border-red-500 @enderror">
+              <input type="tel" minlength="10" maxlength="11"  id="phone" name="phone" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('phone') border-red-500 @enderror">
               
               <label for="name" class="label text-lg text-gray-700 mt-4">Nama Penuh</label>
-              <input type="text" id="name" name="name" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('name') border-red-500 @enderror">
-  
+              <input type="text" id="name" name="name"  class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('name') border-red-500 @enderror">
+          
               <label for="address" class="label text-lg text-gray-700 mt-4">Alamat</label>
-              <input type="text" id="address" name="address" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
-
+              <input type="text" id="address" name="address"class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
+          
               <label for="vaksin" class="label text-lg text-gray-700 mt-4">Status Vaksinasi</label>
-              <input type="text" id="vaksin" name="vaksin" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
+              <input type="text" id="vaksin" name="vaksin"  class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
               
-              <label for="vaksin" class="label text-lg text-gray-700 mt-4">Muat Naik Sijil Vaksinasi</label>
-              <input class="mt-2 px-2 rounded-md h-12 border-2 border-black border-opacity-50 py-2 @error('vaksin') border-red-500 @enderror" type="file" name="vaksin">
+              {{-- <label for="vaksin" class="label text-lg text-gray-700 mt-4">Muat Naik Sijil Vaksinasi</label> --}}
+              {{-- <input class="mt-2 px-2 rounded-md h-12 border-2 border-black border-opacity-50 py-2 @error('vaksin') border-red-500 @enderror" type="file" name="vaksin"> --}}
               
-            </form>
+              {{-- <input type="button" class="btn btn-primary" value="Submit"> --}}
+              {{-- <a onclick="document.getElementById('editForm').submit();"> --}}
+                  <input type="submit" class="btn btn-secondary bg-green-500 mx-auto w-2/3 h-16 mt-2 rounded-md" value="Update">
+              {{-- </a> --}}
+          
+          </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="update" onclick="updateData()">Save changes</button>
+            <input type="button" class="btn btn-primary" value="Submit">
+            {{-- <button type="submit" class="btn btn-primary" id="update" >Save changes</button> --}}
           </div>
         </div>
       </div>
@@ -127,6 +131,7 @@
                     $('#name').val(name);
                     $('#address').val(address);
                     $('#vaksin').val(stats);
+                    $('#editForm').action('/dashboard/manage/' + phone + '/edit');
                   }
                 });
             });
@@ -145,21 +150,21 @@
 
             
 
-            $dt.phone = $('#phone').val();
+            var phone = $('#phone').val();
             var fon = $('#phone').val();
-            $dt.name = $('#name').val();
-            $dt.address = $('#address').val();
-            $dt.vaksin = $('#vaksin').val();
+            var name = $('#name').val();
+            var address = $('#address').val();
+            var vaksin = $('#vaksin').val();
             
 
         $.ajax({
-            url: '/dashboard/manage/update/' + fon,
+            url: '/dashboard/manage/' + phone + '/edit',
             type: 'put',
             data: {
-              phone: $dt.phone,
-              name: $dt.name,
-              address: $dt.address,
-              vaksin: $dt.vaksin,
+              phone: phone,
+              name: name,
+              address: address,
+              vaksin: vaksin,
 
             },
             success: function() {

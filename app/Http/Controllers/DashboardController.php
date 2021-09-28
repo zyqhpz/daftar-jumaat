@@ -35,16 +35,38 @@ class DashboardController extends Controller
     }
 
     // edit user data from a modal
-    public function update(Request $request, $phone) {
-        dd("end");
+    // public function update(Request $request) {
+    //     if (User::where('phone', $request->input('phone'))->count() > 0) {
+    //         return back()->with('status', 'Nombor ini telah didaftarkan dalam sistem. Hubungi pihak AJK jika terdapat sebarang kesulitan.');
+    //     }
+    //     else {
+    //         User::create([
+    //             'name' => $request->name,
+    //             'address' => $request->address,
+    //             'phone' => $request->phone,
+    //             'vaksin' => $request->vaksin,
+    //             'status_vaksin' => 0,
+    //         ]);
+    //     }
+    // }
+
+    public function update($phone) {
+        // dd(request()->all());
+
         $user = User::where('phone', $phone)->first();
-        $user = User::find($request->phone);
-        $user->name = $request->name;
-        // $user->name = Input::get('name');
-        $user->phone = request('phone');
+        $user->name = request()->name;
+        $user->address = request()->address;
+        $user->phone = request()->phone;
+        // $user->vaksin = request()->vaksin;
         $user->save();
-        // return view('layouts.dashboard.manage_user', compact('user'));
         return redirect('/dashboard/manage');
+    }
+
+
+    public function edit($phone) {
+        // dd("end");
+        $user = User::where('phone', $phone)->first();
+        return view('layouts.dashboard.edit', compact('user'));
     }
     
     public function logout() {
