@@ -21,9 +21,6 @@
     <input type="text" id="vaksin" name="vaksin" value="{{ $user['status_vaksin'] }}" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('address') border-red-500 @enderror">
 
     <input type="submit" class="btn btn-secondary bg-green-500 mx-auto w-2/3 h-16 mt-2 rounded-md" value="Update">
-    <a href="/dashboard/manage" class="mx-auto">
-        <input href="/dashboard/manage" class="btn btn-secondary bg-red-500 mx-auto w-2/3 h-16 mt-2 rounded-md" value="Cancel">
-    </a>
-
+    <input onclick="routeToManage()" class="btn btn-secondary bg-red-500 mx-auto w-2/3 h-16 mt-2 rounded-md" value="Cancel">
 </form>
 @endsection
