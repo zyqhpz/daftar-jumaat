@@ -16,33 +16,36 @@ class CheckController extends Controller
         return view('layouts.semak.semak');
     }
     
-    public function store(Request $request) {
-        $this->validate($request, [
-            'phone' => 'required|numeric',
-        ]);
+    public function store($phone) {
+        // $this->validate($phone, [
+        //     'phone' => 'required|numeric',
+        // ]);
         
-        if (!User::where('phone', $request->input('phone'))->count() > 0) {
+        if (!User::where('phone', $phone)->count() > 0) {
             return back()->with('status', 'Nombor ini tiada di dalam rekod. Anda perlu membuat pendaftaran baharu.');
         }
         else {
             // $stats = DB::select('select status_vaksin from users where phone = ?', [$request->input('phone')]);
 
-            $stats = User::where('phone', $request->input('phone'))->first()->status_vaksin;
-            $nama = User::where('phone', $request->input('phone'))->first()->name;
+            $stats = User::where('phone', $phone)->first()->status_vaksin;
+            $nama = User::where('phone', $phone)->first()->name;
 
             
-            if (Senarai::where('phone_id', $request->input('phone'))->count() > 0) {
+            if (Senarai::where('phone_id', $phone)->count() > 0) {
                 
-                $keputusan = Senarai::where('phone_id', $request->input('phone'))->first()->status_pendaftaran;
+                $keputusan = Senarai::where('phone_id', $phone)->first()->status_pendaftaran;
 
                 // dd($stats);
 
                 if ($keputusan == 2) {
                     // return back()->with('status', 'Pendaftaran telah ditutup.');
-                    return redirect('/keputusan')->with('berjaya', 'Pendaftaran berjaya')->with('nama', $nama)->with('vaksin', 'Fully Vaccinated');
+                    return redirect('/semak')->with('keputusan', 'Giliran')->with('berjaya', 'Pendaftaran berjaya')->with('nama', $nama)->with('vaksin', 'Fully Vaccinated');
                 }
-                else if ($keputusan == 1) {
-                    return redirect('/keputusan')->with('gagal', 'Pendaftaran tidak berjaya')->with('nama', $nama)->with('vaksin', 'Fully Vaccinated');
+                else if ($keputusan == 1 && $stats == 1) {
+                    return redirect('/semak')->with('keputusan', 'Giliran')->with('gagal', 'Pendaftaran tidak berjaya')->with('nama', $nama)->with('vaksin', 'Partially Vaccinated');
+                }
+                else if ($keputusan == 1 && $stats == 2) {
+                    return redirect('/semak')->with('keputusan', 'Giliran')->with('gagal', 'Pendaftaran tidak berjaya')->with('nama', $nama)->with('vaksin', 'Fully Vaccinated');
                 }
             
             // THISS IS FOR Dummy 

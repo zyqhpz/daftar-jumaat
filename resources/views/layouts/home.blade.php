@@ -31,9 +31,9 @@
                 </h1>
                 <div class="mt-4">
                     <div class="container justify-center mx-auto flex flex-wrap justify-items-center gap-6">
-                        <a onclick="routeToSemak()"><button class="mt-4 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide shadow-sm">Buat Semakan</button></a> 
-                        <a onclick="routeToDaftar()"><button class="mt-4 mb-2 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Daftar Giliran</button></a> 
-                        <a onclick="routeToBaru()"><button class="mt-4 mb-6 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Pendaftaran Baharu</button></a> 
+                        <a href="/semak"><button class="mt-4 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide shadow-sm">Buat Semakan</button></a> 
+                        <a href="/daftar-giliran"><button class="mt-4 mb-2 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Daftar Giliran</button></a> 
+                        <a href="/daftar-baru"><button class="mt-4 mb-6 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Pendaftaran Baharu</button></a> 
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
         event.preventDefault();
 
         $.ajax({
-            url: '/daftar/giliran',
+            url: '/daftar-giliran',
             method: 'get',
             success: function(data) {
                 $('body').html(data);  
@@ -83,7 +83,7 @@
         event.preventDefault();
 
         $.ajax({
-            url: '/daftar/baru',
+            url: '/daftar-baru',
             method: 'get',
             success: function(data) {
                 $('body').html(data);  

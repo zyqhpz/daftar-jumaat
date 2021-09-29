@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
     public function index() {
-        return view('layouts.dashboard.dashboard');
+        // return view('layouts.dashboard.dashboard');
+        return view('layouts.dashboard.manage_user');
     }
 
     public function senarai() {
@@ -31,7 +32,7 @@ class DashboardController extends Controller
     public function delete($phone) {
         $ahli = User::where('phone', $phone)->first();
         $ahli->delete();
-        return redirect('/dashboard/manage');
+        return redirect('/dashboard');
     }
 
     // edit user data from a modal
@@ -59,7 +60,7 @@ class DashboardController extends Controller
         $user->phone = request()->phone;
         // $user->vaksin = request()->vaksin;
         $user->save();
-        return redirect('/dashboard/manage');
+        return redirect('/dashboard');
     }
 
 

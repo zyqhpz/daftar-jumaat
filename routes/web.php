@@ -23,16 +23,16 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/semak', [CheckController::class, 'index'])->name('semak');
-Route::post('/semak', [CheckController::class, 'store']);
+Route::put('/semak/{phone}', [CheckController::class, 'store']);
 
 // Route::get('/register', [RegisterController::class, 'index'])->name('register');
 // Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/daftar/baru', [RegisterController::class, 'index'])->name('register');
-Route::post('/daftar/baru', [RegisterController::class, 'store']);
+Route::get('/daftar-baru', [RegisterController::class, 'index'])->name('register');
+Route::post('/daftar-baru', [RegisterController::class, 'store']);
 
-Route::get('/daftar/giliran', [DaftarController::class, 'index'])->name('daftar');
-Route::post('/daftar/giliran', [DaftarController::class, 'store']);
+Route::get('/daftar-giliran', [DaftarController::class, 'index'])->name('daftar');
+Route::post('/daftar-giliran', [DaftarController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
@@ -41,9 +41,10 @@ Route::post('/login', [LoginController::class, 'store']);
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('manage');
+// Route::get('/dashboard/manage', [DashboardController::class, 'manage'])->name('manage');
+Route::get('/dashboard', [DashboardController::class, 'manage'])->name('manage');
 // Route::post('/dashboard/edit', [DashboardController::class, 'edit']);
 
 // Route::resource('/dashboard', DashboardController::class);
