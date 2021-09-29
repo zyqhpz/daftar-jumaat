@@ -44,7 +44,7 @@
 
             <button type="submit" class="mt-4 btn-full bg-green-500 hover:bg-green-600 rounded-lg text-white text-bold h-12 justify-center font-semibold tracking-wide"><span class="fas fa-pencil-alt mr-1"></span>Daftar</button>
         </form>
-        <a href="{{ url('/daftar/baru') }}"><button class="mt-4 mb-6 btn-full bg-green-700 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full justify-center font-semibold tracking-wide">Pendaftaran Baharu</button></a> 
+        <a href="#" onclick="routetoBaru()"><button class="mt-4 mb-6 btn-full bg-green-700 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full justify-center font-semibold tracking-wide">Pendaftaran Baharu</button></a> 
     </div>
 
     <script>
