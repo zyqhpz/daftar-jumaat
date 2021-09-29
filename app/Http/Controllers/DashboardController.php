@@ -17,11 +17,8 @@ class DashboardController extends Controller
         return view('layouts.dashboard.manage_user');
     }
 
-    public function senarai() {
-        $senarai = Senarai::all();
-        return view('layouts.dashboard.senarai', compact('senarai'));
-    }
-
+    // USER
+    
     public function manage(Request $request) {
         $ahli = User::all();
         $ahli = User::orderBy('id')->get();
@@ -69,6 +66,16 @@ class DashboardController extends Controller
         $user = User::where('phone', $phone)->first();
         return view('layouts.dashboard.edit', compact('user'));
     }
+
+    // SENARAI
+
+    public function list_senarai() {
+        $senarai = Senarai::all();
+        $senarai = Senarai::orderBy('id')->get();
+        return view('layouts.dashboard.senarai.index', compact('senarai'));
+    }
+
+    // LOGOUT
     
     public function logout() {
         session()->flush();

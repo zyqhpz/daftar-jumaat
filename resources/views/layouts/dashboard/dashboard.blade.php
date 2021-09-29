@@ -50,7 +50,7 @@
                     </div>
                 </a>
                 {{-- <a href="{{ url('/dashboard')}}" class="no-underline"> --}}
-                <a onclick="routeToHome()" class="no-underline">
+                <a href="" onclick="routeToSenarai()" class="no-underline">
                     <div class="flex justify-center bg-gray-200 w-48 h-20 border-black border-2 align-middle">
                         <h1 class="text-lg text-black no-underline text-center m-auto">
                             Senarai
@@ -70,7 +70,6 @@
                 @yield('content')
             </div>
         </div>
-
     </div>
     
 <script src="https://kit.fontawesome.com/36f73a74bd.js" crossorigin="anonymous"></script>
@@ -87,6 +86,24 @@
 
         $.ajax({
             url: '/dashboard',
+            method: 'get',
+            data: {
+                CSRF_TOKEN
+            },
+            success: function(data) {
+                $('#here').html(data);  
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+    function routeToSenarai() {
+        event.preventDefault();
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: '{{ route('senarai.list') }}',
             method: 'get',
             data: {
                 CSRF_TOKEN
