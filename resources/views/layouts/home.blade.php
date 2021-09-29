@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <script src="https://kit.fontawesome.com/36f73a74bd.js" crossorigin="anonymous"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 <body class=" sm:bg-gray-300 bg-transparent w-full h-full antialiased">
@@ -28,9 +31,9 @@
                 </h1>
                 <div class="mt-4">
                     <div class="container justify-center mx-auto flex flex-wrap justify-items-center gap-6">
-                        <a href="{{ url('/semak') }}"><button class="mt-4 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide shadow-sm">Buat Semakan</button></a> 
-                        <a href="{{ url('/daftar/giliran') }}"><button class="mt-4 mb-2 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Daftar Giliran</button></a> 
-                        <a href="{{ url('/daftar/baru') }}"><button class="mt-4 mb-6 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Pendaftaran Baharu</button></a> 
+                        <a onclick="routeToSemak()"><button class="mt-4 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide shadow-sm">Buat Semakan</button></a> 
+                        <a onclick="routeToDaftar()"><button class="mt-4 mb-2 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Daftar Giliran</button></a> 
+                        <a onclick="routeToBaru()"><button class="mt-4 mb-6 btn-full bg-green-500 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full px-4 justify-center font-semibold tracking-wide">Pendaftaran Baharu</button></a> 
                     </div>
                 </div>
             </div>
@@ -47,3 +50,48 @@
     }
 </style>
 </html>
+
+<script>
+    function routeToSemak() {
+        event.preventDefault();
+
+        $.ajax({
+            url: '/semak',
+            method: 'get',
+            success: function(data) {
+                $('body').html(data);  
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+    function routeToDaftar() {
+        event.preventDefault();
+
+        $.ajax({
+            url: '/daftar/giliran',
+            method: 'get',
+            success: function(data) {
+                $('body').html(data);  
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+    function routeToBaru() {
+        event.preventDefault();
+
+        $.ajax({
+            url: '/daftar/baru',
+            method: 'get',
+            success: function(data) {
+                $('body').html(data);  
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+</script>

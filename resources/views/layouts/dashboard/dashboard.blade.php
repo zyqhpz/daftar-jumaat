@@ -92,7 +92,6 @@
                 CSRF_TOKEN
             },
             success: function(data) {
-                // console.log(data);
                 $('#here').html(data);  
             },
             error: function(xhr) {
@@ -100,32 +99,6 @@
             }
         });
     }
-
-    // function routeToManage() {
-    //     event.preventDefault();
-    //     const xhttp = new XMLHttpRequest();
-    //     // const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    //     xhttp.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             document.getElementById("here").innerHTML = this.responseText;
-    //         }
-    //     };
-    //     xhttp.open("GET", "/dashboard/manage", true);
-    //     xhttp.send();
-    // }
-
-    //     $.ajax({
-    //         url: '/dashboard/manage',
-    //         type: 'get',
-    //         data: {
-    //             CSRF_TOKEN
-    //         },
-    //         success: function(data) {
-    //             // console.log(data);
-    //             $('#here').html(data);  
-    //         }
-    //     });
-    // }
     function routeToHome() {
         event.preventDefault();
         const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -137,34 +110,11 @@
                 CSRF_TOKEN
             },
             success: function(data) {
-                // console.log(data);
                 $('#here').html(data);
             }
         });
     }
-    // function updateData() {
-    //           event.preventDefault();
-    //           // const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-    //           var phone = $('#phone').val();
-              
-    //           $.ajax({
-    //               url: '/dashboard/edit',
-    //               type: 'post',
-    //               data: {
-    //                   phone: phone,
-    //                   name: $('#name').val(),
-    //                   address: $('#address').val(),
-    //                   vaksin: $('#vaksin').val(),
-    //                   _token: '{{ csrf_token() }}'
-    //               },
-    //               success: function(response) {
-    //                   console.log("123");
-    //                   // $('#here').html(data);  
-    //               }
-    //         });
 </script>
-
 
 <style>
     @yield('styling')

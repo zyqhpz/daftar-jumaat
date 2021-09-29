@@ -70,22 +70,22 @@
       </div>
     </div>
     <script>
-            function editData(phone) {
-              console.log(phone);
-              event.preventDefault();
-              const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      function editData(phone) {
+        console.log(phone);
+        event.preventDefault();
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-              $.ajax({
-                  url: '/dashboard/manage/edit/' + phone,
-                  method: 'get',
-                  success: function(data) {
-                      $('#here').html(data);  
-                  },
-                  error: function(xhr) {
-                      console.log(xhr.responseText);
-                  }
-              });
+        $.ajax({
+            url: '/dashboard/manage/edit/' + phone,
+            method: 'get',
+            success: function(data) {
+                $('#here').html(data);  
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
             }
+        });
+      }
     </script>
 @endsection
 
