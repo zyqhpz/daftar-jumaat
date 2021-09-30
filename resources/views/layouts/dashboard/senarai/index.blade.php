@@ -11,28 +11,28 @@
             <thead class="p-1">
               <tr class="rounded-t-xl">
                 <th class="w-1/12 ...">No.</th>
-                <th class="w-4/12 ...">Nama</th>
-                <th class="w-2/12 ...">No. Telefon</th>
-                <th class="w-3/12 ...">Alamat</th>
+                <th class="w-4/12 ...">Tarikh ID</th>
+                <th class="w-2/12 ...">Tarikh</th>
+                {{-- <th class="w-3/12 ...">Alamat</th>
                 <th class="w-2/12 ...">Status Vaksinasi</th>
-                <th class="w-1/12 ..."></th>
+                <th class="w-1/12 ..."></th> --}}
               </tr>
             </thead>
             <tbody class="p-1">
               @foreach ($senarai as $row)
-              @php  
+              {{-- @php  
                   if ($row->status_pendaftaran == 2) {
                     $stats_reg = 'Berjaya';
                   } else {
                     $stats_reg = 'Tidak Berjaya';
                   }
-              @endphp
+              @endphp --}}
               <tr>
                 <td>{{ $row['id'] }}</td>
-                <td data-id="">{{ $row['phone_id'] }}</td>
-                <td data-id="">{{ $row['tarikh'] }}</td>
-                <td>{{ $row['address'] }}</td>
-                <td>{{ $stats_reg }}</td>
+                {{-- <td data-id="">{{ $row['phone_id'] }}</td> --}}
+                <td data-id="">{{ $row['tarikh_id'] }}</td>
+                <td>{{ $row['tarikh'] }}</td>
+                {{-- <td>{{ $stats_reg }}</td> --}}
                 <td class=" inline-flex gap-2">
                 <a onclick="editData('{{ $row['id'] }}')" class="modal-trigger px-2 py-1 bg-blue-700" data-role="update" data-id="{{ $row['id'] }}">
                   <button id="myBtn" type="button" class=" mx-auto" data-bs-target="#exampleModal">

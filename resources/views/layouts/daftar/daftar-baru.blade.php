@@ -21,7 +21,7 @@
         </div>
         @else
         <h1 class="font-extrabold mx-auto justify-center text-lg text-center">
-            MAKLUMAT DIRI
+            PENDAFTARAN BAHARU
             <br>
             <span class="font-bold mx-auto text-center justify-center text-md text-gray-700">Pastikan maklumat diisi adalah tepat</span>
         </h1>

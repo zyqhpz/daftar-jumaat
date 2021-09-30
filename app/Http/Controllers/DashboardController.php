@@ -70,7 +70,13 @@ class DashboardController extends Controller
     // SENARAI
 
     public function list_senarai() {
-        $senarai = Senarai::all();
+        // $senarai = Tarikh::all();
+        // DB class select all data from table tarikh and table senarai
+        $senarai = DB::table('tarikh')
+            ->join('senarai_nama', 'senarai_nama.tarikh_id', '=', 'tarikh.tarikh_id')
+            ->select('senarai_nama.status_pendaftaran')
+            ->get();
+
         $senarai = Senarai::orderBy('id')->get();
         return view('layouts.dashboard.senarai.index', compact('senarai'));
     }

@@ -58,7 +58,7 @@
                 <br>
                 <small class="font-bold">Tanpa Tanda Sengkang (-)</small>
             </label>
-            <input type="tel" minlength="10" maxlength="11" name="phone" id="phone" placeholder="Contoh: 0123456789" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('phone') border-red-500 @enderror">
+            <input type="tel" minlength="10" maxlength="11" name="phone" id="phone" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" placeholder="Contoh: 0123456789" class="px-2 rounded-md h-12 border-2 border-black border-opacity-50 @error('phone') border-red-500 @enderror">
             @error('phone')
             <div class="text-red-500 text-sm mt-1">
                 Sila isikan nombor telefon anda.
@@ -66,19 +66,20 @@
             @enderror
 
             <!-- <input type="submit" value="Semak" class="h-8 rounded-lg bg-green-600 text-white text-bold"> -->
-            <button type="submit" class="mt-4 btn-full bg-green-500 hover:bg-green-600 rounded-lg text-white text-bold h-12 justify-center font-semibold tracking-wide"><span class="fas fa-search mr-1"></span>Semak</button>
+            <button type="submit" id="btn" class="mt-4 btn-full bg-green-500 hover:bg-green-600 rounded-lg text-white text-bold h-12 justify-center font-semibold tracking-wide"><span class="fas fa-search mr-1"></span>Semak</button>
         </form>
-        <a href="/daftar-giliran"><button class="mt-4 mb-6 btn-full bg-green-700 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full justify-center font-semibold tracking-wide">Pendaftaran Giliran</button></a> 
+            <a href="/daftar-giliran"><button class="mb-6 btn-full bg-green-700 hover:bg-green-800 rounded-lg text-white text-bold h-12 mx-auto w-full justify-center font-semibold tracking-wide">Pendaftaran Giliran</button></a> 
         @endif
     </div>
     <script>
         $('#checkForm').submit(function(e){
-            if($('#phone').val() == ''){
+            var phone = $("#phone").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            if(!regex.test(phone) || phone.length < 10 || phone.length > 11){
+                alert("Sila isikan nombor telefon anda dengan betul.");
                 e.preventDefault();
-                alert('Sila isikan nombor telefon anda.');
             }
         });
-
         $("#phone").on("change keyup paste", function(){
             $('#checkForm').attr('action', 'semak/' + this.value);
         });

@@ -17,9 +17,6 @@ class CheckController extends Controller
     }
     
     public function store($phone) {
-        // $this->validate($phone, [
-        //     'phone' => 'required|numeric',
-        // ]);
         
         if (!User::where('phone', $phone)->count() > 0) {
             return back()->with('status', 'Nombor ini tiada di dalam rekod. Anda perlu membuat pendaftaran baharu.');
@@ -47,6 +44,15 @@ class CheckController extends Controller
                 else if ($keputusan == 1 && $stats == 2) {
                     return redirect('/semak')->with('keputusan', 'Giliran')->with('gagal', 'Pendaftaran tidak berjaya')->with('nama', $nama)->with('vaksin', 'Fully Vaccinated');
                 }
+                else if ($keputusan == 0 && $stats == 1) {
+                    return redirect('/semak')->with('keputusan', 'Tidak Giliran')->with('gagal', 'Keputusan Pending...')->with('nama', $nama)->with('vaksin', 'Partially Vaccinated');
+                }
+                else if ($keputusan == 0 && $stats == 2) {
+                    return redirect('/semak')->with('keputusan', 'Tidak Giliran')->with('gagal', 'Keputusan Pending...')->with('nama', $nama)->with('vaksin', 'Fully Vaccinated');
+                }
+                else {
+                    return redirect('/semak')->with('keputusan', 'Tidak Giliran')->with('gagal', 'Keputusan Pending...')->with('nama', $nama)->with('vaksin', 'Tiada Vaksin');
+                }
             
             // THISS IS FOR Dummy 
             // if($stats == 2) {
@@ -59,7 +65,7 @@ class CheckController extends Controller
             }
             
             else {
-                return redirect('/semak')->with('status', 'Nombor ini tidak berdaftar lagi. Sila buat pendaftaran giliran.');
+                return redirect('/semak')->with('status', 'Nombor ini tidak didaftarkan untuk giliran minggu ini. Sila membuat pendaftaran giliran.');
             }
         }
 
