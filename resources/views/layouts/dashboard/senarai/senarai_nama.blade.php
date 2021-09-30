@@ -30,17 +30,14 @@
                 <th class="">No.</th>
                 <th class="">Tarikh ID</th>
                 <th class="w-36">Tarikh</th>
-                {{-- <th class="w-48">Status Kehadiran</th> --}}
+                <th class="w-48">Status Kehadiran</th>
                 {{-- <th class="w-3/12 ...">Alamat</th>
                 <th class="w-2/12 ...">Status Vaksinasi</th> --}}
-                <th class="w-60"></th>
+                <th class=""></th>
               </tr>
             </thead>
             <tbody class="p-1">
-              @php
-                  $no = 0;
-              @endphp
-              @foreach ($tarikh as $row)
+              @foreach ($senarai as $row)
               {{-- @php  
                   if ($row->status_pendaftaran == 2) {
                     $stats_reg = 'Berjaya';
@@ -49,28 +46,29 @@
                   }
               @endphp --}}
               <tr>
-                {{-- <td>{{ $row->id}}</td> --}}
-                <td>{{ ++$no }}</td>
+                <td>{{ $row['id'] }}</td>
                 {{-- <td data-id="">{{ $row['phone_id'] }}</td> --}}
-                <td data-id="">{{ $row->tarikh_id }}</td>
-                <td>{{ $row->tarikh }}</td>
-               
+                <td data-id="">{{ $row['tarikh_id'] }}</td>
+                <td>{{ $row['tarikh'] }}</td>
+                <td>
+                  @if ($row['status_kehadiran'] == 1)
+                    Hadir
+                  @elseif ($row['status_kehadiran'] == 2)
+                    Tidak Hadir
+                  @else
+                    Pending...
+                  @endif  
+                </td>
                 {{-- <td>{{ $stats_reg }}</td> --}}
                 <td class=" inline-flex gap-2">
-                <a onclick="editData('{{ $row->id }}')" class="modal-trigger px-2 py-1 bg-blue-700" data-role="update" data-id="{{ $row->id }}">
+                <a onclick="editData('{{ $row['id'] }}')" class="modal-trigger px-2 py-1 bg-blue-700" data-role="update" data-id="{{ $row['id'] }}">
                   <button id="myBtn" type="button" class=" mx-auto" data-bs-target="#exampleModal">
                       <i class="fas fa-edit text-white"></i>
                   </button>
                 </a>
-                <a class="modal-trigger px-2 py-1 bg-red-500" href="{{ route('manage.delete', $row->id) }}" onclick="return confirm('Anda pasti untuk padam data ini?')">
+                <a class="modal-trigger px-2 py-1 bg-red-500" href="{{ route('manage.delete', $row['id']) }}" onclick="return confirm('Anda pasti untuk padam data ini?')">
                   <button type="button" class="delete-btn">
                     <i class="fas fa-trash text-white"></i>
-                  </button>
-                </a>
-                <a class="modal-trigger px-2 py-1 bg-yellow-300 no-underline w-auto mx-auto text-black flex justify-center" href="{{ route('senarai.nama', $row->id) }}">
-                  <button type="button" class="">
-                    <i class="fas fa-eye text-white mx-auto drop-shadow-md"></i>
-                    {{-- <span>Senarai Nama</span> --}}
                   </button>
                 </a>
                 </td>

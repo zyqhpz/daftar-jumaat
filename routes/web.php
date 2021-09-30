@@ -63,6 +63,8 @@ Route::get('/dashboard/senarai', [DashboardController::class, 'list_senarai'])->
 Route::get('/dashboard/senarai/{id}', [DashboardController::class, 'delete_senarai'])->name('senarai.delete');
 Route::get('/dashboard/senarai/edit/{id}', [DashboardController::class, 'edit_senarai'])->name('senarai.edit');
 Route::put('/dashboard/senarai/{id}/edit', [DashboardController::class, 'update_senarai']);
+
+Route::get('/dashboard/senarai/nama/{id}', [DashboardController::class, 'list_senarai_nama'])->name('senarai.nama');
 // Route::post('/dashboard/manage/update/{phone}', [DashboardController::class, 'update']);
 // Route::put('/dashboard/manage/update/{phone}', function ($phone) {
 //     echo $phone;

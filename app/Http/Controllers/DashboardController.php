@@ -67,7 +67,7 @@ class DashboardController extends Controller
         return view('layouts.dashboard.edit', compact('user'));
     }
 
-    // SENARAI
+    // SENARAI TARIKH
 
     public function list_senarai() {
         // $senarai = Tarikh::all();
@@ -77,8 +77,27 @@ class DashboardController extends Controller
             ->select('senarai_nama.status_pendaftaran')
             ->get();
 
-        $senarai = Senarai::orderBy('id')->get();
-        return view('layouts.dashboard.senarai.index', compact('senarai'));
+        // select 'tarikh' from table tarikh using DB class
+        $tarikh = DB::table('tarikh')->get();
+        // dd($tarikh);
+
+        // select only with tarikh_id = 1
+        // $senarai = Senarai::where('tarikh_id', 1)->orderBy('id')->get();
+        // select all from table tarikh
+        // $tarikh = Tarikh::all();
+        // return view('layouts.dashboard.list_senarai', compact('senarai', 'tarikh'));
+
+        // $senarai = Senarai::where('tarikh_id', 1)->orderBy('id')->get();
+
+        // $senarai = Senarai::orderBy('id')->get();
+        return view('layouts.dashboard.senarai.index', compact('tarikh'));
+    }
+
+    // SENARAI NAMA
+
+    public function list_senarai_nama($id) {
+        $senarai = Senarai::where('tarikh_id', $id)->orderBy('id')->get();
+        return view('layouts.dashboard.senarai.senarai_nama', compact('senarai'));
     }
 
     // LOGOUT
